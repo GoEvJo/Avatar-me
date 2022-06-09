@@ -1,1 +1,9 @@
-Informing
+●   El sistema debe contar con al menos dos paquetes.
+●   Se deben emplear estructuras y métodos para soportar las funcionalidades.
+●   Se debe emplear al menos una interfaz en el sistema.
+●   Se pueden usar funciones auxiliares.
+●   Se debe implementar un manejo de errores apropiado.
+●   Se deben documentar los campos públicos con comentarios explicativos.
+●   Puede que sientas que algunos puntos son ambiguos o abiertos a la “creatividad”. Resuelvelos
+de la manera que creas correcta y justifícalo explicando los razonamientos que seguiste. Los
+animamos a que ejerciten la mayor cantidad posible de los conceptos estudiados.
