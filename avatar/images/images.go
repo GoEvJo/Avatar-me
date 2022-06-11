@@ -15,23 +15,12 @@ type generatorStaff struct {
 	length int
 }
 
-func Builder(hash []byte, length int) (generatorStaff, error) {
-	if length <= 0 {
-		return generatorStaff{
-			hash:   nil,
-			length: 0,
-		}, errorMessages.BadLength
-	}
-	if len(hash) != 64 {
-		return generatorStaff{
-			hash:   nil,
-			length: 0,
-		}, errorMessages.Hashing
-	}
+func Builder(hash []byte, length int) (generatorStaff) {
+	
 	return generatorStaff{
 		hash:   hash,
 		length: length,
-	}, nil
+	}
 }
 
 func (meth *generatorStaff) IdenticonGenerator(string2convert string, myHash []byte, length int) error {
