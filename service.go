@@ -3,9 +3,9 @@ package avatar
 import (
 	"fmt"
 
-	encoder "github.com/GoEvJo/Avatar-me/pkg/avatar/encoder"
-	errorMessages "github.com/GoEvJo/Avatar-me/pkg/avatar/errorMessages"
-	images "github.com/GoEvJo/Avatar-me/pkg/avatar/images"
+	encoder "github.com/GoEvJo/Avatar-me/avatar/encoder"
+	errorMessages "github.com/GoEvJo/Avatar-me/avatar/errorMessages"
+	images "github.com/GoEvJo/Avatar-me/avatar/images"
 )
 
 const length = 60
