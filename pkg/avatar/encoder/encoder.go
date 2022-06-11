@@ -1,22 +1,34 @@
 package encoder
 
 import (
-	"crypto/sha1"
+	"crypto/sha512"
+
+	"github.com/GoEvJo/Avatar-me/pkg/avatar/errorMessages"
 )
 
-type myEncoder struct{}
+type MyEncoder struct {
+	strInformation string
+}
 
-func (e *myEncoder) EncodeInformation(strInformation string) (encodedInformation []byte, err error) {
-	strInformation = "sha1 this string"
+func (e *MyEncoder) EncodeInformation() (encodedInformation []byte, err error) {
+	//init the hash
+	sha512 := sha512.New()
 
-	h := sha1.New()
+	//pass the string
+	sha512.Write([]byte(e.strInformation))
 
-	_, err = h.Write([]byte(strInformation))
-	if err != nil {
+	//64bit hash code
+	returningValue := sha512.Sum(nil)
+	if len(returningValue) != 64 {
+		err = errorMessages.Hashing /*fmt.Errorf("error: wrong size hash value")*/
 		return nil, err
 	}
+	return returningValue, nil
+}
 
-	theHash := h.Sum(nil)
-
-	return theHash, err
+func NewMyEncoder(strInformation string) MyEncoder {
+	NewEncoder := MyEncoder{
+		strInformation: strInformation,
+	}
+	return NewEncoder
 }
