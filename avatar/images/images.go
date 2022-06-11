@@ -7,7 +7,7 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/GoEvJo/Avatar-me/pkg/avatar/errorMessages"
+	"github.com/GoEvJo/Avatar-me/avatar/errorMessages"
 )
 
 type generatorStaff struct {
