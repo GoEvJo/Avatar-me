@@ -3,9 +3,9 @@ package avatar
 import (
 	"fmt"
 
-	encoder "github.com/GoEvJo/Avatar-me/avatar/encoder"
-	errorMessages "github.com/GoEvJo/Avatar-me/avatar/errorMessages"
-	images "github.com/GoEvJo/Avatar-me/avatar/images"
+	"github.com/GoEvJo/Avatar-me/avatar/encoder"
+	"github.com/GoEvJo/Avatar-me/avatar/errorMessages"
+	"github.com/GoEvJo/Avatar-me/avatar/images"
 )
 
 const length = 60
@@ -40,8 +40,8 @@ func DefaultAvatarGeneration(strInformation string, hash []byte, length int) (*G
 		return nil, errorMessages.BadLength
 	}
 	return &Generator{
-		myEncoder:     encoder.NewMyEncoder(strInformation),
-		myIdenticoner: images.Builder(hash, length),
+		myEncoder:     &encoder.NewMyEncoder(strInformation),
+		myIdenticoner: &images.Builder(hash, length),
 	}, nil
 }
 
