@@ -40,8 +40,8 @@ func DefaultAvatarGeneration(strInformation string, hash []byte, length int) (*G
 		return nil, errorMessages.BadLength
 	}
 	return &Generator{
-		myEncoder:     encoder.NewMyEncoder(strInformation),
-		myIdenticoner: images.Builder(hash, length),
+		myEncoder:     &encoder.NewMyEncoder(strInformation),
+		myIdenticoner: &images.Builder(hash, length),
 	}, nil
 }
 
