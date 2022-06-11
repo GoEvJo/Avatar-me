@@ -3,7 +3,7 @@ package encoder
 import (
 	"crypto/sha512"
 
-	"github.com/GoEvJo/Avatar-me/pkg/avatar/errorMessages"
+	"github.com/GoEvJo/Avatar-me/avatar/errorMessages"
 )
 
 type MyEncoder struct {
