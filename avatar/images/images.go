@@ -10,20 +10,23 @@ import (
 	"github.com/GoEvJo/Avatar-me/avatar/errorMessages"
 )
 
+// generatorStaff is a struct wich contains the information hashed (Sha512) and the length of the image to be created.
 type generatorStaff struct {
 	hash   []byte
 	length int
 }
 
-func Builder(hash []byte, length int) (generatorStaff) {
-	
-	return generatorStaff{
+// Constructor that provides a pointer to a new generatorStaff struct from an byte array (Sha512) and a positive length.
+func Builder(hash []byte, length int) *generatorStaff {
+
+	return &generatorStaff{
 		hash:   hash,
 		length: length,
 	}
 }
 
-func (meth *generatorStaff) IdenticonGenerator(string2convert string, myHash []byte, length int) error {
+// IdenticonGenerator is the function in charge of creating the identicon.
+func (mGS *generatorStaff) IdenticonGenerator(string2convert string, myHash []byte, length int) error {
 	if string2convert == "" {
 		return errorMessages.NullString
 	}
