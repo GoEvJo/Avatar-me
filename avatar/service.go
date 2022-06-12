@@ -48,8 +48,8 @@ func DefaultFeaturesGeneration(strInformation string, hash []byte, length int) (
 	}
 	theImageGenerator := images.Builder(myHash, length)
 	return &Generator{
-		myEncoder:     theCryptoEncoder,
-		myIdenticoner: theImageGenerator,
+		myEncoder:     &theCryptoEncoder,
+		myIdenticoner: &theImageGenerator,
 	}, nil
 }
 
