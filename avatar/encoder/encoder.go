@@ -6,11 +6,13 @@ import (
 	"github.com/GoEvJo/Avatar-me/avatar/errorMessages"
 )
 
-type MyEncoder struct {
+// myEncoder is a struct wich contains the information (not-null string) to be hashed.
+type myEncoder struct {
 	strInformation string
 }
 
-func (e *MyEncoder) EncodeInformation() (encodedInformation []byte, err error) {
+// EncodeInformation is the function in charge of making the hash from a string. It returns hashed info (Sha512) and an error, if it occurs.
+func (e *myEncoder) EncodeInformation() (encodedInformation []byte, err error) {
 	//init the hash
 	sha512 := sha512.New()
 
@@ -26,9 +28,10 @@ func (e *MyEncoder) EncodeInformation() (encodedInformation []byte, err error) {
 	return returningValue, nil
 }
 
-func NewMyEncoder(strInformation string) MyEncoder {
-	NewEncoder := MyEncoder{
+// Function that provides a pointer to a new myEncoder struct from a string.
+func NewMyEncoder(strInformation string) *myEncoder {
+	NewEncoder := myEncoder{
 		strInformation: strInformation,
 	}
-	return NewEncoder
+	return &NewEncoder
 }
