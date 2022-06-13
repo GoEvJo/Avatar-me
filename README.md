@@ -1,8 +1,8 @@
-## Avatar-me
+# Avatar-me
 Given personal information, such as an email address, an IP address or a public key, a unique avatar is generated.
 (Repository belonging to the Golang course)
 
-# How to
+## How to
 The information must be entered as a string to TheInfo variable:
 
 avatar.TheInfo = "This is an example"
