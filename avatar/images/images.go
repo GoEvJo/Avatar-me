@@ -10,28 +10,19 @@ import (
 	"github.com/GoEvJo/Avatar-me/avatar/errorMessages"
 )
 
-// generatorStaff is a struct wich contains the information hashed (Sha512) and the length of the image to be created.
 type generatorStaff struct {
-	hash   []byte
-	length int
 }
 
-// Constructor that provides a pointer to a new generatorStaff struct from an byte array (Sha512) and a positive length.
-func Builder(hash []byte, length int) *generatorStaff {
-
-	return &generatorStaff{
-		hash:   hash,
-		length: length,
-	}
+// Constructor that provides a pointer to a new generatorStaff struct capable of using the interface.
+func Builder() generatorStaff {
+	NewGeneratorStaff := generatorStaff{}
+	return NewGeneratorStaff
 }
 
 // IdenticonGenerator is the function in charge of creating the identicon.
-func (mGS *generatorStaff) IdenticonGenerator(string2convert string, myHash []byte, length int) error {
+func (mGS *generatorStaff) IdenticonGenerator(string2convert string, myHash []byte) error {
 	if string2convert == "" {
 		return errorMessages.NullString
-	}
-	if length <= 0 {
-		return errorMessages.BadLength
 	}
 	if len(myHash) != 64 {
 		return errorMessages.Hashing
@@ -39,7 +30,7 @@ func (mGS *generatorStaff) IdenticonGenerator(string2convert string, myHash []by
 
 	imgColor := myHash[0:6]
 
-	m := image.NewRGBA(image.Rect(0, 0, length, length))
+	m := image.NewRGBA(image.Rect(0, 0, 60, 60))
 
 	oddColor := color.RGBA{imgColor[0], imgColor[1], imgColor[2], 255}
 	evenColor := color.RGBA{imgColor[3], imgColor[4], imgColor[5], 255}
