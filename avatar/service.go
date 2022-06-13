@@ -8,19 +8,15 @@ import (
 	"github.com/GoEvJo/Avatar-me/avatar/images"
 )
 
-const length = 60
-
-// cryptoEncoder is someone who can encode information.
 type cryptoEncoder interface {
-	EncodeInformation() (encodedInformation []byte, err error)
+	EncodeInformation(strInformation string) (encodedInformation []byte, err error)
 }
 
-// imageGenerator is someone who can make and save images.
 type imageGenerator interface {
-	IdenticonGenerator(string2convert string, myHash []byte, length int) error
+	IdenticonGenerator(string2convert string, myHash []byte) error
 }
 
-// Generator contains functionalities related to identicon generation, myEncoder wich allows to encode a string using Sha512
+// Generator contains functionalities related to identicon generation: myEncoder wich allows to encode a string using Sha512
 // and myIdenticoner wich creates and saves one identicon.
 type Generator struct {
 	myEncoder     cryptoEncoder
@@ -30,41 +26,34 @@ type Generator struct {
 // Information to be hashed, cannot be null.
 var TheInfo string
 
-// Function that gives me a Generator struct. Needs a not-null string, Sha512 info and positive length.
-func DefaultFeaturesGeneration(strInformation string, hash []byte, length int) (*Generator, error) {
-	if strInformation == "" {
+// Function that gives me a Generator struct.
+func DefaultFeaturesGeneration() (*Generator, error) {
+
+	if TheInfo == "" {
 		return nil, errorMessages.NullString
 	}
-	if len(hash) != 64 {
-		return nil, errorMessages.Hashing
-	}
-	if length <= 0 {
-		return nil, errorMessages.BadLength
-	}
-	theCryptoEncoder := encoder.NewMyEncoder(strInformation)
-	myHash, err := theCryptoEncoder.EncodeInformation()
-	if err != nil {
-		return nil, err
-	}
-	theImageGenerator := images.Builder(myHash, length)
-	return &Generator{
+
+	theCryptoEncoder := encoder.NewMyEncoder()
+	theImageGenerator := images.Builder()
+	NewGenerator := Generator{
 		myEncoder:     &theCryptoEncoder,
 		myIdenticoner: &theImageGenerator,
-	}, nil
+	}
+
+	return &NewGenerator, nil
 }
 
 // Generator method in charge of making and save the identicon.
 func (genOne *Generator) GenerateAndSaveAvatar() error {
-	// here will be all the logic
 
-	encodedBytes, err := genOne.myEncoder.EncodeInformation()
+	encodedBytes, err := genOne.myEncoder.EncodeInformation(TheInfo)
 	if err != nil {
 		return err
 	}
-	err = genOne.myIdenticoner.IdenticonGenerator(TheInfo, encodedBytes, length)
+	err = genOne.myIdenticoner.IdenticonGenerator(TheInfo, encodedBytes)
 	if err != nil {
 		return err
 	}
-	fmt.Printf("the avatar related to %s name is created and saved", TheInfo)
+	fmt.Printf("The identicon related to %s name was created and saved", TheInfo)
 	return nil
 }
