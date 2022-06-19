@@ -15,4 +15,4 @@ utilitiesNeeded , err := avatar.DefaultFeaturesGeneration()
 Finally the identicon can be made and saved as an .png image, named after string contained in avatar.TheInfo using
 GenerateAndSaveAvatar() that return an error, if it occurs:
 
-err = aver.GenerateAndSaveAvatar()
+err = utilitiesNeeded.GenerateAndSaveAvatar()
